@@ -1,4 +1,11 @@
-import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import {
+  Alert,
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 
 import { Participant } from '../../components/Participant'
 import { styles } from './styles'
@@ -18,11 +25,27 @@ export function Home() {
   ]
 
   function handleAddParticipant() {
+    if (participants.includes('Ava Weston')) {
+      return Alert.alert(
+        'Participante existe',
+        'Já existe um participante na lista com esse nome.',
+      )
+    }
+
     console.log('adding participant...')
   }
 
   function handleRemoveParticipant(name: string) {
-    console.log('removing participant...', name)
+    Alert.alert('Remover', `Deseja remover o participante ${name}?`, [
+      {
+        text: 'Sim',
+        onPress: () => Alert.alert('Deletado!'),
+      },
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+    ])
   }
 
   return (
