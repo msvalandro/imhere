@@ -4,8 +4,18 @@ import { Participant } from '../../components/Participant'
 import { styles } from './styles'
 
 export function Home() {
+  const participants = [
+    'Matheus Valandro',
+    'Diego Fernandes',
+    'Rodrigo Gonçalves',
+  ]
+
   function handleAddParticipant() {
     console.log('adding participant...')
+  }
+
+  function handleRemoveParticipant(name: string) {
+    console.log('removing participant...', name)
   }
 
   return (
@@ -25,8 +35,13 @@ export function Home() {
         </TouchableOpacity>
       </View>
 
-      <Participant />
-      <Participant />
+      {participants.map((participant) => (
+        <Participant
+          key={participant}
+          name={participant}
+          onRemove={handleRemoveParticipant}
+        />
+      ))}
     </View>
   )
 }
