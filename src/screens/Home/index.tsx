@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Alert,
   FlatList,
@@ -11,18 +12,11 @@ import { Participant } from '../../components/Participant'
 import { styles } from './styles'
 
 export function Home() {
-  const participants = [
-    'Ava Weston',
-    'Liam Hartley',
-    'Mia Grayson',
-    'Ethan Whitaker',
-    'Sophia Chandler',
-    'Noah Sterling',
-    'Isabella Manning',
-    'Lucas Tennyson',
-    'Harper Ellington',
-    'Mason Driscoll',
-  ]
+  const [participants, setParticipants] = useState([
+    'Harry Potter',
+    'Ron Weasley',
+    'Hermione Granger',
+  ])
 
   function handleAddParticipant() {
     if (participants.includes('Ava Weston')) {
@@ -32,7 +26,7 @@ export function Home() {
       )
     }
 
-    console.log('adding participant...')
+    setParticipants((state) => [...state, 'Neville Longbottom'])
   }
 
   function handleRemoveParticipant(name: string) {
