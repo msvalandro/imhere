@@ -12,21 +12,19 @@ import { Participant } from '../../components/Participant'
 import { styles } from './styles'
 
 export function Home() {
-  const [participants, setParticipants] = useState([
-    'Harry Potter',
-    'Ron Weasley',
-    'Hermione Granger',
-  ])
+  const [participants, setParticipants] = useState<string[]>([])
+  const [participantName, setParticipantName] = useState('')
 
   function handleAddParticipant() {
-    if (participants.includes('Ava Weston')) {
+    if (participants.includes(participantName)) {
       return Alert.alert(
         'Participante existe',
         'Já existe um participante na lista com esse nome.',
       )
     }
 
-    setParticipants((state) => [...state, 'Neville Longbottom'])
+    setParticipants((state) => [...state, participantName])
+    setParticipantName('')
   }
 
   function handleRemoveParticipant(name: string) {
@@ -52,6 +50,8 @@ export function Home() {
           style={styles.input}
           placeholder="Nome do participante"
           placeholderTextColor="#6b6b6b"
+          value={participantName}
+          onChangeText={setParticipantName}
         />
 
         <TouchableOpacity style={styles.button} onPress={handleAddParticipant}>
